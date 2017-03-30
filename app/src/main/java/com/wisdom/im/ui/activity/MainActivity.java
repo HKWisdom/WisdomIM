@@ -1,15 +1,17 @@
 package com.wisdom.im.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import com.wisdom.im.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity{
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void init() {
+
+    }
+
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.activity_main;
     }
 }

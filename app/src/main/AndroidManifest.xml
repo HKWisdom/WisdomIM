@@ -64,7 +64,7 @@
         <activity android:name=".ui.activity.MainActivity">
         </activity>
 
-        <activity android:name=".ui.activity.SplashActivity">
+        <activity android:name=".ui.activity.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -72,9 +72,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.LoginActivity"/>
+        <activity android:name=".ui.activity.LoginActivity" />
 
-        <activity android:name=".ui.activity.RegisterActivity"/>
+        <activity android:name=".ui.activity.RegisterActivity" />
     </application>
 
 </manifest>
