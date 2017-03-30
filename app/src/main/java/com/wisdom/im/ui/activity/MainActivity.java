@@ -1,7 +1,9 @@
-package com.wisdom.im;
+package com.wisdom.im.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.wisdom.im.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -5,7 +5,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.wisdom.im.MainActivity;
 import com.wisdom.im.R;
 
 import butterknife.BindView;

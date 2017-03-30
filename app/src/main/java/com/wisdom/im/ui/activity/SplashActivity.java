@@ -2,7 +2,6 @@ package com.wisdom.im.ui.activity;
 
 import android.os.Handler;
 
-import com.wisdom.im.MainActivity;
 import com.wisdom.im.R;
 import com.wisdom.im.presenter.SplashPresenter;
 import com.wisdom.im.presenter.presenterImpl.SplashPresenterImpl;
