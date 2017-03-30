@@ -82,4 +82,27 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     public void startRegister() {
         showDialog("正在注册");
     }
+
+    @Override
+    public void onBmobSuccess() {
+        Toast.makeText(this, "注册Bmob成功", Toast.LENGTH_SHORT).show();
+        hideDialog();
+    }
+
+    @Override
+    public void onBmobFailed() {
+        Toast.makeText(this, "注册Bmob失败", Toast.LENGTH_SHORT).show();
+        hideDialog();
+    }
+
+    @Override
+    public void onHuanXinSuccess() {
+        Toast.makeText(this, "注册环信成功", Toast.LENGTH_SHORT).show();
+        goToActivity(MainActivity.class);
+    }
+
+    @Override
+    public void onHuanXinFailed() {
+        Toast.makeText(this, "注册环信失败", Toast.LENGTH_SHORT).show();
+    }
 }

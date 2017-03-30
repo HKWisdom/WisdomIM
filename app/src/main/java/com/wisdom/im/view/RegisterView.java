@@ -14,4 +14,12 @@ public interface RegisterView {
     void on2PasswordNotEquals();
 
     void startRegister();
+
+    void onBmobSuccess();
+
+    void onBmobFailed();
+
+    void onHuanXinSuccess();
+
+    void onHuanXinFailed();
 }

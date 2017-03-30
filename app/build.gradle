@@ -32,4 +32,9 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     //添加这一句 } ```
     compile files('libs/hyphenatechat_3.3.0.jar')
+    compile files('libs/androidasync-2.1.6.jar')
+    compile files('libs/BmobNewIM_2.0.5_20160601.jar')
+    compile files('libs/BmobSDK_V3.4.7_0527.jar')
+    compile files('libs/okhttp-3.2.0.jar')
+    compile files('libs/okio-1.7.0.jar')
 }

@@ -11,6 +11,9 @@ import com.hyphenate.chat.EMOptions;
 import java.util.Iterator;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobConfig;
+
 /**
  * Created by HKWisdom on 2017/3/30.
  */
@@ -18,10 +21,11 @@ import java.util.List;
 public class MyApplication extends Application {
     private static final String TAG = "MyApplication";
     private MyApplication appContext;
-
+    public static MyApplication mContext;
     @Override
     public void onCreate() {
         super.onCreate();
+        mContext = this;
         EMOptions options = new EMOptions();
         // 默认添加好友时，是不需要验证的，改成需要验证
         options.setAcceptInvitationAlways(false);
@@ -44,6 +48,26 @@ public class MyApplication extends Application {
         EMClient.getInstance().init(this, options);
         //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
         EMClient.getInstance().setDebugMode(true);
+
+        initBmob();
+    }
+
+    private void initBmob() {
+        //第一：默认初始化
+//        Bmob.initialize(this, "Your Application ID");
+
+        //第二：自v3.4.7版本开始,设置BmobConfig,允许设置请求超时时间、文件分片上传时每片的大小、文件的过期时间(单位为秒)，
+        BmobConfig config =new BmobConfig.Builder(this)
+        //设置appkey
+        .setApplicationId("aaaec76836eb9c90d0368c020b804bde")
+        //请求超时时间（单位为秒）：默认15s
+        .setConnectTimeout(30)
+        //文件分片上传时每片的大小（单位字节），默认512*1024
+        .setUploadBlockSize(1024*1024)
+        //文件的过期时间(单位为秒)：默认1800s
+        .setFileExpiration(2500)
+        .build();
+        Bmob.initialize(config);
     }
 
     private String getAppName(int pID) {
