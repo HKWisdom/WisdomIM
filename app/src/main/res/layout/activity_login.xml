@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/login_bk"
+    android:padding="10dp">
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:src="@drawable/default_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/username"
+        android:hint="用户名"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:layout_marginTop="5dp"
+        android:id="@+id/password"
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:text="登录"
+        android:id="@+id/btn_login"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_login_bg"
+        />
+
+    <TextView
+        android:id="@+id/tv_new_user"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/qq_blue_pres"
+        android:layout_gravity="right"
+        android:text="新用户"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
