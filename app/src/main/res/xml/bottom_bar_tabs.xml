@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+<tab
+    id="@+id/tab_conversation"
+    icon="@drawable/ic_conversation_selected_2"
+    title="消息" />
+<tab
+    id="@+id/tab_contact"
+    icon="@drawable/ic_contact_selected_2"
+    title="联系人" />
+<tab
+    id="@+id/tab_dynamic"
+    icon="@drawable/ic_dynamic_selected_2"
+    title="动态" />
+</tabs>

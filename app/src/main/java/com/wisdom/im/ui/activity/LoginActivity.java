@@ -1,5 +1,10 @@
 package com.wisdom.im.ui.activity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +22,7 @@ import butterknife.OnClick;
 /**
  * Created by HKWisdom on 2017/3/30.
  */
-public class LoginActivity extends BaseActivity implements LoginView{
+public class LoginActivity extends BaseActivity implements LoginView {
 
     @BindView(R.id.username)
     EditText mUsername;
@@ -44,7 +49,15 @@ public class LoginActivity extends BaseActivity implements LoginView{
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                login();
+                //登录之前先判断是否存在权限申请问题
+                boolean isCheckPermission = getWriteSDCardPermission();
+                if (isCheckPermission) {
+                    login();
+                }else {
+                    //申请权限
+                    applyPermission();
+                }
+
                 break;
 
             case R.id.tv_new_user:
@@ -53,11 +66,29 @@ public class LoginActivity extends BaseActivity implements LoginView{
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            login();
+        }else {
+            Toast.makeText(this, "权限被拒绝", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void applyPermission() {
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},200);
+    }
+
+    private boolean getWriteSDCardPermission() {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
     private void login() {
         showDialog("正在登录...");
         String username = mUsername.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
-        mLoginPresenter.login(username,password);
+        mLoginPresenter.login(username, password);
     }
 
     @Override
