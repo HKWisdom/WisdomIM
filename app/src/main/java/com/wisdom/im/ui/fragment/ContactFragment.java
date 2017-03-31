@@ -1,5 +1,6 @@
 package com.wisdom.im.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import com.wisdom.im.R;
 import com.wisdom.im.model.bean.Contact;
 import com.wisdom.im.presenter.ContactPresenter;
 import com.wisdom.im.presenter.presenterImpl.ContactPresenterImpl;
+import com.wisdom.im.ui.activity.AddFriendActivity;
 import com.wisdom.im.ui.adapter.ContactAdapter;
 import com.wisdom.im.view.ContactView;
 import com.wisdom.im.widget.SliderBar;
@@ -68,7 +70,8 @@ public class ContactFragment extends BaseFragment implements ContactView, Slider
 
     @OnClick(R.id.iv_add_friend)
     public void onClick() {
-
+        Intent intent = new Intent(getContext(),AddFriendActivity.class);
+        startActivity(intent);
     }
 
     @Override

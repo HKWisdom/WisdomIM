@@ -68,6 +68,13 @@ public class ContactPresenterImpl implements ContactPresenter {
             String name = userNames.get(i);
             contact.setFirstLatter(String.valueOf(name.charAt(0)));
             contact.setUsername(name);
+            Boolean isShow = true;
+            if (i > 0) {
+                if(contact.getFirstLatter().equals(String.valueOf(userNames.get(i-1).charAt(0)))){
+                    isShow = false;
+                }
+            }
+            contact.setNeedShowFirstLatter(isShow);
             mContactList.add(contact);
         }
     }

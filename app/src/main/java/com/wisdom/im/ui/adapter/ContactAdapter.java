@@ -68,6 +68,12 @@ public class ContactAdapter extends RecyclerView.Adapter {
         public void bindView(Contact contact) {
             mFirstlatter.setText(contact.getFirstLatter());
             mUsername.setText(contact.getUsername());
+            if (contact.isNeedShowFirstLatter()) {
+                mFirstlatter.setVisibility(View.VISIBLE);
+            }else {
+                mFirstlatter.setVisibility(View.GONE);
+            }
+
         }
     }
 }
