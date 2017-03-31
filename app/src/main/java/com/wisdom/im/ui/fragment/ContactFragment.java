@@ -15,6 +15,7 @@ import com.wisdom.im.presenter.ContactPresenter;
 import com.wisdom.im.presenter.presenterImpl.ContactPresenterImpl;
 import com.wisdom.im.ui.adapter.ContactAdapter;
 import com.wisdom.im.view.ContactView;
+import com.wisdom.im.widget.SliderBar;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ import butterknife.OnClick;
 /**
  * Created by HKWisdom on 2017/3/31.
  */
-public class ContactFragment extends BaseFragment implements ContactView {
+public class ContactFragment extends BaseFragment implements ContactView, SliderBar.OnIndexChangeListener {
     @BindView(R.id.iv_back)
     ImageView mIvBack;
     @BindView(R.id.tv_title)
@@ -36,6 +37,8 @@ public class ContactFragment extends BaseFragment implements ContactView {
     @BindView(R.id.popup_latter)
     TextView mPopupLatter;
     public ContactPresenter mContactPresenter;
+    @BindView(R.id.sliderbar)
+    SliderBar mSliderbar;
     private ContactAdapter mContactAdapter;
 
     @Override
@@ -47,6 +50,8 @@ public class ContactFragment extends BaseFragment implements ContactView {
         mRvContact.setHasFixedSize(true); //自动刷新时固定item宽高，减少测量、布局
         mContactAdapter = new ContactAdapter(getContext());
         mRvContact.setAdapter(mContactAdapter);
+        mSliderbar.setOnIndexChangeListener(this);
+
     }
 
     @Override
@@ -70,7 +75,7 @@ public class ContactFragment extends BaseFragment implements ContactView {
     public void onLoadContactSuccess() {
         List<Contact> contactList = mContactPresenter.getContactList();
         mContactAdapter.setContactList(contactList);
-        Toast.makeText(getContext(), "获取联系人成功"+contactList.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "获取联系人成功" + contactList.size(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -78,4 +83,32 @@ public class ContactFragment extends BaseFragment implements ContactView {
         Toast.makeText(getContext(), "获取联系人失败", Toast.LENGTH_SHORT).show();
 
     }
+
+    @Override
+    public void onIndexChange(String latter) {
+        mPopupLatter.setVisibility(View.VISIBLE);
+        mPopupLatter.setText(latter);
+        int position = getPositionByLatter(latter);
+        if (position != -1) {
+            mRvContact.smoothScrollToPosition(position);
+        }
+    }
+
+    @Override
+    public void onFinish() {
+        mPopupLatter.setVisibility(View.INVISIBLE);
+    }
+
+    private int getPositionByLatter(String latter) {
+        List<Contact> contactList = mContactPresenter.getContactList();
+        int position = -1;
+        for (int i = 0; i < contactList.size(); i++) {
+            Contact contact = contactList.get(i);
+            if (latter.equalsIgnoreCase(contact.getFirstLatter())) {
+                position = i;
+            }
+        }
+        return position;
+    }
+
 }

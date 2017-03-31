@@ -13,9 +13,12 @@
             android:id="@+id/rv_contact"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </android.support.v7.widget.RecyclerView>
-
+        <com.wisdom.im.widget.SliderBar
+            android:id="@+id/sliderbar"
+            android:layout_gravity="right"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"/>
         <TextView
             android:id="@+id/popup_latter"
             android:visibility="gone"
