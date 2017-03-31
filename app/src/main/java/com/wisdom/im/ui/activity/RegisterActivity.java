@@ -98,7 +98,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     @Override
     public void onHuanXinSuccess() {
         Toast.makeText(this, "注册环信成功", Toast.LENGTH_SHORT).show();
-        goToActivity(MainActivity.class);
+//        goToActivity(MainActivity.class);
     }
 
     @Override

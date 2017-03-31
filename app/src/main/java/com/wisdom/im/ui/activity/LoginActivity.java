@@ -85,7 +85,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     private void login() {
-        showDialog("正在登录...");
         String username = mUsername.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
         mLoginPresenter.login(username, password);
