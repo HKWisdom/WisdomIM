@@ -13,4 +13,6 @@ public interface AddFriendPresenter {
     void searchFriends(String content);
 
     List<Friend> getFriendList();
+
+    void onDestroy();
 }

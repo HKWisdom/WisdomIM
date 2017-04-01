@@ -85,6 +85,19 @@ public class AddFriendActivity extends BaseActivity implements AddFriendView {
         Toast.makeText(this, "搜索失败", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onAddFriendFailed() {
+        Toast.makeText(this, "添加好友失败", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void onAddFriendSuccess() {
+        Toast.makeText(this, "添加好友成功", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mAddFriendPresenter.onDestroy();
+    }
 }

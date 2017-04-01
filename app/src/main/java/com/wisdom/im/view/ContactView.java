@@ -7,4 +7,8 @@ public interface ContactView {
     void onLoadContactSuccess();
 
     void onLoadContactFailed();
+
+    void onDeleteContactSuccess();
+
+    void onDeleteContactFailed();
 }

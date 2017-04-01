@@ -10,11 +10,14 @@ import android.widget.TextView;
 
 import com.wisdom.im.R;
 import com.wisdom.im.model.bean.Friend;
+import com.wisdom.im.model.bean.eventbus.AddFriendEvent;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by HKWisdom on 2017/3/31.
@@ -43,6 +46,7 @@ public class FriendAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        holder.setIsRecyclable(false);
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.bindView(mFriendList.get(position));
     }
@@ -55,7 +59,7 @@ public class FriendAdapter extends RecyclerView.Adapter {
         return 0;
     }
 
-     class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_add_friend_username)
         TextView mTvAddFriendUsername;
         @BindView(R.id.tv_add_friend_creat_time)
@@ -67,16 +71,22 @@ public class FriendAdapter extends RecyclerView.Adapter {
             super(view);
             ButterKnife.bind(this, view);
         }
+        @OnClick({R.id.btn_add_friend})
+        public void onClick(View view) {
+            EventBus.getDefault().post(new AddFriendEvent(mTvAddFriendUsername.getText().toString().trim(),"请求添加好友"));
 
-         public void bindView(Friend friend) {
-             mTvAddFriendUsername.setText(friend.getUsername());
-             mTvAddFriendCreatTime.setText(friend.getCreateTime());
-             if (friend.isAdded()) {
-                 mBtnAddFriend.setText("已添加好友");
-                 mBtnAddFriend.setEnabled(false);
-             }else {
-                 mBtnAddFriend.setText("添加");
-             }
-         }
-     }
+        }
+
+        public void bindView(Friend friend) {
+            mTvAddFriendUsername.setText(friend.getUsername());
+            mTvAddFriendCreatTime.setText(friend.getCreateTime());
+            if (friend.isAdded()) {
+                mBtnAddFriend.setText("已是好友");
+                mBtnAddFriend.setEnabled(false);
+            } else {
+                mBtnAddFriend.setText("添加");
+                mBtnAddFriend.setEnabled(true);
+            }
+        }
+    }
 }

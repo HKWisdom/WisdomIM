@@ -14,4 +14,6 @@ public interface ContactPresenter {
 
     void loadAllContacts();
 
+    void deleteContact(String username);
+
 }

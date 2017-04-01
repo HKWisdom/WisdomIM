@@ -9,4 +9,8 @@ public interface AddFriendView {
     void onSearchFriendSuccess();
 
     void onSearchFriendFailed();
+
+    void onAddFriendFailed();
+
+    void onAddFriendSuccess();
 }

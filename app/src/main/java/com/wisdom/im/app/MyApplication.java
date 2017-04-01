@@ -28,7 +28,7 @@ public class MyApplication extends Application {
         mContext = this;
         EMOptions options = new EMOptions();
         // 默认添加好友时，是不需要验证的，改成需要验证
-        options.setAcceptInvitationAlways(false);
+        options.setAcceptInvitationAlways(true);
 
         appContext = this;
         int pid = android.os.Process.myPid();
