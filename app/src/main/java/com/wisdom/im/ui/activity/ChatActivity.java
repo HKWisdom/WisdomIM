@@ -1,19 +1,25 @@
 package com.wisdom.im.ui.activity;
 
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hyphenate.chat.EMMessage;
 import com.wisdom.im.R;
 import com.wisdom.im.presenter.presenterImpl.ChatPresenter;
 import com.wisdom.im.presenter.presenterImpl.ChatPresenterImpl;
+import com.wisdom.im.ui.adapter.ChatAdapter;
 import com.wisdom.im.view.ChatView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -29,13 +35,14 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener, 
     @BindView(R.id.iv_add_friend)
     ImageView mIvAddFriend;
     @BindView(R.id.rv_chat)
-    RecyclerView mRvChat;
+   public RecyclerView mRvChat;
     @BindView(R.id.et_msg_content)
     EditText mEtMsgContent;
     @BindView(R.id.btn_send_msg)
     Button mBtnSendMsg;
     private ChatPresenter mChatPresenter;
     private String mUsername;
+    private ChatAdapter mChatAdapter;
 
     @Override
     protected void init() {
@@ -46,9 +53,32 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener, 
             mTvTitle.setText(mUsername);
         }
 
+        mChatAdapter = new ChatAdapter(this);
+        mRvChat.setLayoutManager(new LinearLayoutManager(this));
+        mRvChat.setHasFixedSize(true);
+        mRvChat.setAdapter(mChatAdapter);
+
         mIvBack.setVisibility(View.VISIBLE);
         mIvBack.setOnClickListener(this);
+
+       // mRvChat.addOnScrollListener(mOnScrollListener);
     }
+
+    private RecyclerView.OnScrollListener mOnScrollListener = new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+
+            //获取到第一个条目的索引
+            int firstVisibleItemPosition = ((LinearLayoutManager) mRvChat.getLayoutManager()).findFirstVisibleItemPosition();
+            //得到第一个条目的id
+            String msgId = mChatAdapter.getEMMessageList().get(firstVisibleItemPosition).getMsgId();
+            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && firstVisibleItemPosition == 0) {
+                //加载更多
+                mChatPresenter.loadMoreMsg(mUsername,msgId);
+            }
+        }
+    };
 
     @Override
     protected int getLayoutResId() {
@@ -77,13 +107,14 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     @Override
-    public void startSendMessage(String content) {
-
+    public void startSendMessage(EMMessage content) {
+        mChatAdapter.addMsg(content);
     }
 
     @Override
     public void onSendMessageSuccess() {
         Toast.makeText(this, "发送成功", Toast.LENGTH_SHORT).show();
+        mChatAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -91,4 +122,15 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener, 
         Toast.makeText(this, "发送失败", Toast.LENGTH_SHORT).show();
 
     }
+
+    @Override
+    public void loadHistoryMsgSuccess(List<EMMessage> messagesList) {
+      //  mChatAdapter.receiveMsg(messagesList);
+    }
+
+    @Override
+    public void loadMOreMsgSuccess(List<EMMessage> messagesList) {
+      //  mChatAdapter.receiveOldMsg(messagesList);
+    }
+
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_send_msg_time"
+        android:padding="5dp"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2017-4-1 11:09"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_send_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/avatar6"/>
+
+        <ImageView
+            android:id="@+id/iv_send_progress"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/msg_error"/>
+
+        <TextView
+            android:layout_toLeftOf="@id/iv_send_icon"
+            android:id="@+id/tv_send_msg_content"
+            android:layout_toRightOf="@id/iv_send_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/send_msg_normal"
+            android:text="XXX"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -6,4 +6,8 @@ package com.wisdom.im.presenter.presenterImpl;
 
 public interface ChatPresenter {
     void sendMessage(String content,String username);
+
+    void loadHistoryMsg(String name);
+
+    void loadMoreMsg(String username, String msgId);
 }

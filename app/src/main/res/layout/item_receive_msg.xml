@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_receive_msg_time"
+        android:padding="5dp"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2017-4-1 11:09"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_receive_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/avatar1"/>
+
+        <TextView
+            android:layout_toRightOf="@id/iv_receive_icon"
+            android:id="@+id/tv_receive_msg_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/receive_msg_pres"
+            android:text="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+            />
+
+    </RelativeLayout>
+</LinearLayout>
