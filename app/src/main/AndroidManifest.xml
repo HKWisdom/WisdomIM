@@ -77,6 +77,8 @@
         <activity android:name=".ui.activity.RegisterActivity" />
 
         <activity android:name=".ui.activity.AddFriendActivity"/>
+
+        <activity android:name=".ui.activity.ChatActivity"/>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.wisdom.im.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
 import com.wisdom.im.R;
 import com.wisdom.im.model.bean.Contact;
+import com.wisdom.im.ui.activity.ChatActivity;
 import com.wisdom.im.ui.fragment.ContactFragment;
 import com.wisdom.im.utils.ThreadUtil;
 
@@ -146,6 +148,15 @@ public class ContactAdapter extends RecyclerView.Adapter implements EMContactLis
                 public boolean onLongClick(View v) {
                     mContactFragment.AlertDeleteContact(mUsername.getText().toString().trim());
                     return false;
+                }
+            });
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext,ChatActivity.class);
+                    intent.putExtra("username",mUsername.getText().toString().trim());
+                    mContext.startActivity(intent);
                 }
             });
         }
